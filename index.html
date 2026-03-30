@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mykhailo Mykhailov — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  :root {
+    --navy:   #1a2a4a;
+    --navy2:  #2a4a7a;
+    --ice:    #aabbcc;
+    --cream:  #f7f5f0;
+    --dark:   #1a1a1a;
+    --mid:    #666;
+    --border: rgba(26,42,74,0.12);
+  }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    background: var(--cream);
+    color: var(--dark);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+ 
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 3rem;
+    background: rgba(247,245,240,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--navy);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--navy); }
+ 
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+  .hero-left {
+    background: var(--navy);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(170,187,204,0.18);
+  }
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    bottom: -140px; right: -140px;
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    border: 1px solid rgba(170,187,204,0.1);
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 1.5rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--ice);
+  }
+  .hero-desc {
+    font-size: 0.95rem;
+    color: rgba(170,187,204,0.85);
+    max-width: 340px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid rgba(170,187,204,0.35);
+    color: var(--ice);
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+  }
+ 
+  .hero-right {
+    padding: 8rem 4rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+  .hero-right-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ice);
+    font-weight: 500;
+    color: var(--navy2);
+    margin-bottom: 0.5rem;
+  }
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .stat {
+    border-left: 2px solid var(--navy);
+    padding-left: 1rem;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--mid);
+    line-height: 1.4;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--navy);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.85rem 1.75rem;
+    border-radius: 2px;
+    transition: background 0.2s;
+    align-self: flex-start;
+  }
+  .hero-cta:hover { background: var(--navy2); }
+  .hero-cta svg { width: 14px; height: 14px; }
+ 
+  /* ── SECTIONS ── */
+  section { padding: 6rem 3rem; }
+  .section-inner { max-width: 1000px; margin: 0 auto; }
+ 
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--navy2);
+    margin-bottom: 0.75rem;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 3rem;
+  }
+ 
+  /* ── ABOUT ── */
+  #about { background: #fff; }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--mid);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+  .about-facts { display: flex; flex-direction: column; gap: 1.25rem; }
+  .fact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .fact:last-child { border-bottom: none; }
+  .fact-key {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--navy2);
+  }
+  .fact-val { font-size: 0.9rem; color: var(--dark); }
+ 
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--cream); }
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2.5rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: 176px; top: 2.5rem;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--navy);
+  }
+  .exp-meta { text-align: right; padding-top: 0.1rem; }
+  .exp-date {
+    font-size: 0.8rem;
+    color: var(--mid);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  .exp-location {
+    font-size: 0.78rem;
+    color: var(--ice);
+    color: var(--navy2);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .exp-role {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+    margin-bottom: 0.2rem;
+  }
+  .exp-company {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--navy2);
+    margin-bottom: 0.75rem;
+  }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .exp-bullets li {
+    font-size: 0.88rem;
+    color: var(--mid);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.6;
+  }
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--navy);
+    font-weight: 500;
+  }
+ 
+  /* ── SKILLS ── */
+  #skills { background: var(--navy); }
+  #skills h2 { color: #fff; }
+  #skills .section-label { color: var(--ice); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    border: 1px solid rgba(170,187,204,0.15);
+  }
+  .skill-block {
+    padding: 2rem;
+    border: 1px solid rgba(170,187,204,0.1);
+    transition: background 0.2s;
+  }
+  .skill-block:hover { background: rgba(255,255,255,0.04); }
+  .skill-icon {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(170,187,204,0.3);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 14px;
+    color: var(--ice);
+    font-weight: 500;
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+  }
+  .skill-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 0.4rem;
+  }
+  .skill-desc { font-size: 0.8rem; color: var(--ice); line-height: 1.6; }
+ 
+  /* ── EDUCATION ── */
+  #education { background: #fff; }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .edu-card {
+    border: 1px solid var(--border);
+    padding: 2rem;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .edu-card:hover { border-color: var(--navy); }
+  .edu-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--navy);
+  }
+  .edu-degree {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+  .edu-school {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--navy2);
+    margin-bottom: 0.25rem;
+  }
+  .edu-dates {
+    font-size: 0.78rem;
+    color: var(--mid);
+    margin-bottom: 1rem;
+  }
+  .edu-desc { font-size: 0.85rem; color: var(--mid); line-height: 1.65; }
+ 
+  /* ── LANGUAGES ── */
+  .lang-row {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  .lang-pill {
+    display: flex; align-items: center; gap: 0.5rem;
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    font-size: 0.85rem;
+  }
+  .lang-name { font-weight: 500; color: var(--navy); }
+  .lang-level { color: var(--mid); font-size: 0.78rem; }
+ 
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--navy);
+    text-align: center;
+    padding: 7rem 3rem;
+  }
+  #contact .section-label { color: var(--ice); }
+  #contact h2 { color: #fff; margin-bottom: 1.5rem; }
+  #contact p { color: rgba(170,187,204,0.8); max-width: 480px; margin: 0 auto 2.5rem; font-size: 0.95rem; }
+  .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: 1px solid rgba(170,187,204,0.35);
+    color: var(--ice);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+  }
+  .contact-link:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: var(--ice);
+    color: #fff;
+  }
+  .contact-link.primary {
+    background: #fff;
+    color: var(--navy);
+    border-color: #fff;
+  }
+  .contact-link.primary:hover { background: var(--ice); }
+ 
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.06em;
+  }
+ 
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+ 
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { min-height: 60vh; padding: 7rem 2rem 3rem; }
+    .hero-right { padding: 3rem 2rem; }
+    .about-grid, .edu-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .exp-item::before { display: none; }
+    .exp-meta { text-align: left; }
+    section { padding: 4rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">M. Mykhailov</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Portfolio</p>
+    <h1 class="hero-name">Mykhailo<br><em>Mykhailov</em></h1>
+    <p class="hero-desc">International Business & Technology student with a quantitative edge — bridging data, analytics, and business strategy.</p>
+    <div class="hero-tags">
+      <span class="tag">User Acquisition</span>
+      <span class="tag">Data Analysis</span>
+      <span class="tag">A/B Testing</span>
+      <span class="tag">Python</span>
+      <span class="tag">Tableau</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div>
+      <p class="hero-right-label">At a glance</p>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-num">4+</div>
+          <div class="stat-label">Languages spoken</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">B2</div>
+          <div class="stat-label">German proficiency</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">UA</div>
+          <div class="stat-label">Industry experience</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">IBT</div>
+          <div class="stat-label">Current degree focus</div>
+        </div>
+      </div>
+    </div>
+    <a href="mailto:m.o.mykhailov@gmail.com" class="hero-cta">
+      Get in touch
+      <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</section>
+ 
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <p class="section-label fade-up">Background</p>
+    <h2 class="fade-up">Analytical mind,<br>international perspective</h2>
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <p>I'm a Ukrainian-born student based in Dachau, Germany, currently pursuing a B.Sc. in International Business & Technology at TH Nürnberg — a program that sits at the intersection of economics, computer science, and applied mathematics.</p>
+        <p>My academic path started with Applied Mathematics at Taras Shevchenko University in Kyiv, where I built a strong foundation in quantitative reasoning, data science tools, and analytical problem-solving before relocating to Germany in 2022.</p>
+        <p>I'm drawn to roles where data informs decisions — whether that's optimising a UA campaign, evaluating creative performance, or building dashboards that tell a story.</p>
+      </div>
+      <div class="about-facts fade-up">
+        <div class="fact">
+          <span class="fact-key">Based in</span>
+          <span class="fact-val">Dachau, Bavaria, Germany</span>
+        </div>
+        <div class="fact">
+          <span class="fact-key">Currently studying</span>
+          <span class="fact-val">B.Sc. International Business & Technology — TH Nürnberg</span>
+        </div>
+        <div class="fact">
+          <span class="fact-key">Background</span>
+          <span class="fact-val">Applied Mathematics, Taras Shevchenko University Kyiv</span>
+        </div>
+        <div class="fact">
+          <span class="fact-key">Interests</span>
+          <span class="fact-val">Urban studies, Swimming, Data storytelling</span>
+        </div>
+        <div class="fact">
+          <span class="fact-key">Contact</span>
+          <span class="fact-val">m.o.mykhailov@gmail.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <p class="section-label fade-up">Work</p>
+    <h2 class="fade-up">Experience</h2>
+    <div class="exp-list">
+ 
+      <div class="exp-item fade-up">
+        <div class="exp-meta">
+          <span class="exp-date">Feb – May 2022</span>
+          <span class="exp-location">Kyiv, Ukraine</span>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">User Acquisition Intern</div>
+          <div class="exp-company">MysteryTag</div>
+          <ul class="exp-bullets">
+            <li>Analysed user behaviour and campaign performance data in Excel, identifying optimisation opportunities across active channels.</li>
+            <li>Collaborated with the marketing team on creative evaluations, reporting, and routine campaign monitoring.</li>
+            <li>Tracked budgets across channels to maintain spend accuracy and alignment with weekly targets.</li>
+            <li>Designed and evaluated A/B tests comparing ad creatives to improve campaign effectiveness.</li>
+            <li>Flagged a critical targeting misconfiguration early, preventing substantial budget overspend.</li>
+          </ul>
+        </div>
+      </div>
+ 
+      <div class="exp-item fade-up">
+        <div class="exp-meta">
+          <span class="exp-date">2022 – 2025</span>
+          <span class="exp-location">Germany</span>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Relocation & Integration</div>
+          <div class="exp-company">Ukraine → Germany</div>
+          <ul class="exp-bullets">
+            <li>Completed intensive German language coursework from A1 to B2 level.</li>
+            <li>Adapted to a new cultural and academic environment while maintaining forward momentum toward a German university degree.</li>
+          </ul>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+</section>
+ 
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label fade-up">Toolkit</p>
+    <h2 class="fade-up">Skills & tools</h2>
+    <div class="skills-grid">
+      <div class="skill-block fade-up">
+        <div class="skill-icon">Py</div>
+        <div class="skill-name">Python</div>
+        <div class="skill-desc">Used in academic and practical mini-projects; comfortable with data manipulation and scripting.</div>
+      </div>
+      <div class="skill-block fade-up">
+        <div class="skill-icon">Tb</div>
+        <div class="skill-name">Tableau</div>
+        <div class="skill-desc">Dashboard creation and data visualisation for communicating insights clearly.</div>
+      </div>
+      <div class="skill-block fade-up">
+        <div class="skill-icon">GA</div>
+        <div class="skill-name">Google Analytics</div>
+        <div class="skill-desc">Tracking user behaviour, funnel analysis, and campaign attribution.</div>
+      </div>
+      <div class="skill-block fade-up">
+        <div class="skill-icon">xl</div>
+        <div class="skill-name">MS Office</div>
+        <div class="skill-desc">Working proficiency across Excel, PowerPoint, and Word for analysis and reporting.</div>
+      </div>
+      <div class="skill-block fade-up">
+        <div class="skill-icon">A/B</div>
+        <div class="skill-name">A/B Testing</div>
+        <div class="skill-desc">Designing and evaluating split tests to compare creatives and improve conversion metrics.</div>
+      </div>
+      <div class="skill-block fade-up">
+        <div class="skill-icon">C++</div>
+        <div class="skill-name">Programming Foundations</div>
+        <div class="skill-desc">Introductory C++ and R from Applied Mathematics; strong logical and algorithmic thinking.</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <p class="section-label fade-up">Academic</p>
+    <h2 class="fade-up">Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card fade-up">
+        <div class="edu-degree">B.Sc. International Business & Technology</div>
+        <div class="edu-school">TH Nürnberg</div>
+        <div class="edu-dates">Since October 2025</div>
+        <div class="edu-desc">A combined program covering business administration, economics, quantitative methods, and technical fundamentals including mathematics, computer science, and natural sciences. Complemented by Spanish language studies.</div>
+      </div>
+      <div class="edu-card fade-up">
+        <div class="edu-degree">B.Sc. Applied Mathematics</div>
+        <div class="edu-school">Taras Shevchenko National University, Kyiv</div>
+        <div class="edu-dates">Interrupted 2022</div>
+        <div class="edu-desc">Focused on advanced mathematics and analytical problem-solving, with exposure to data science tools including R and Python, and introductory programming in C++.</div>
+      </div>
+    </div>
+ 
+    <div style="margin-top: 3.5rem;" class="fade-up">
+      <p class="section-label">Languages</p>
+      <div class="lang-row">
+        <div class="lang-pill"><span class="lang-name">English</span><span class="lang-level">C1</span></div>
+        <div class="lang-pill"><span class="lang-name">German</span><span class="lang-level">B2</span></div>
+        <div class="lang-pill"><span class="lang-name">Ukrainian</span><span class="lang-level">Native</span></div>
+        <div class="lang-pill"><span class="lang-name">Russian</span><span class="lang-level">Native</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label fade-up">Say hello</p>
+  <h2 class="fade-up">Let's connect</h2>
+  <p class="fade-up">Open to internships, working student positions, and junior roles in analytics, data, or marketing operations — preferably in the Munich–Dachau–Nürnberg area.</p>
+  <div class="contact-links fade-up">
+    <a href="mailto:m.o.mykhailov@gmail.com" class="contact-link primary">m.o.mykhailov@gmail.com</a>
+    <a href="tel:+4917225194770" class="contact-link">+49 172 251 9477</a>
+    <a href="https://linktr.ee/m.o.mykhailov" target="_blank" class="contact-link">Linktree</a>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  Mykhailo Mykhailov &nbsp;·&nbsp; Dachau, Bavaria &nbsp;·&nbsp; 2025
+</footer>
+ 
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+ 
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
+ 
