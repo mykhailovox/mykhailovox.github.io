@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
   :root {
     --navy:   #1a2a4a;
     --navy2:  #2a4a7a;
@@ -19,9 +19,9 @@
     --mid:    #666;
     --border: rgba(26,42,74,0.12);
   }
- 
+
   html { scroll-behavior: smooth; }
- 
+
   body {
     font-family: 'DM Sans', sans-serif;
     font-weight: 400;
@@ -30,7 +30,7 @@
     font-size: 16px;
     line-height: 1.7;
   }
- 
+
   /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -58,7 +58,7 @@
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--navy); }
- 
+
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
@@ -129,7 +129,7 @@
     padding: 0.3rem 0.75rem;
     border-radius: 2px;
   }
- 
+
   .hero-right {
     padding: 8rem 4rem 4rem;
     display: flex;
@@ -153,9 +153,9 @@
   }
   .stat-num {
     font-family: 'DM Serif Display', serif;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
     color: var(--navy);
-    line-height: 1;
+    line-height: 1.2;
     margin-bottom: 0.25rem;
   }
   .stat-label {
@@ -180,11 +180,11 @@
   }
   .hero-cta:hover { background: var(--navy2); }
   .hero-cta svg { width: 14px; height: 14px; }
- 
+
   /* ── SECTIONS ── */
   section { padding: 6rem 3rem; }
   .section-inner { max-width: 1000px; margin: 0 auto; }
- 
+
   .section-label {
     font-size: 0.72rem;
     letter-spacing: 0.15em;
@@ -200,7 +200,7 @@
     line-height: 1.2;
     margin-bottom: 3rem;
   }
- 
+
   /* ── ABOUT ── */
   #about { background: #fff; }
   .about-grid {
@@ -231,7 +231,7 @@
     color: var(--navy2);
   }
   .fact-val { font-size: 0.9rem; color: var(--dark); }
- 
+
   /* ── EXPERIENCE ── */
   #experience { background: var(--cream); }
   .exp-list { display: flex; flex-direction: column; gap: 0; }
@@ -243,14 +243,7 @@
     border-bottom: 1px solid var(--border);
     position: relative;
   }
-  .exp-item::before {
-    content: '';
-    position: absolute;
-    left: 176px; top: 2.5rem;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--navy);
-  }
+ 
   .exp-meta { text-align: right; padding-top: 0.1rem; }
   .exp-date {
     font-size: 0.8rem;
@@ -294,7 +287,7 @@
     color: var(--navy);
     font-weight: 500;
   }
- 
+
   /* ── SKILLS ── */
   #skills { background: var(--navy); }
   #skills h2 { color: #fff; }
@@ -330,7 +323,85 @@
     margin-bottom: 0.4rem;
   }
   .skill-desc { font-size: 0.8rem; color: var(--ice); line-height: 1.6; }
- 
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--cream); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  .project-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .project-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+  }
+  .project-image {
+    height: 180px;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+  .project-placeholder {
+    color: var(--ice);
+  }
+  .project-content {
+    padding: 1.5rem;
+  }
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .project-desc {
+    font-size: 0.85rem;
+    color: var(--mid);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .project-tags .tag {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    background: rgba(26,42,74,0.1);
+    color: var(--navy2);
+    border-radius: 2px;
+  }
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--navy);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    margin-top: 1rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .project-link:hover {
+    color: var(--navy);
+    border-bottom-color: var(--navy);
+  }
+  .project-link::after {
+    content: '→';
+  }
+
   /* ── EDUCATION ── */
   #education { background: #fff; }
   .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -371,7 +442,7 @@
     margin-bottom: 1rem;
   }
   .edu-desc { font-size: 0.85rem; color: var(--mid); line-height: 1.65; }
- 
+
   /* ── LANGUAGES ── */
   .lang-row {
     display: flex; gap: 1rem; flex-wrap: wrap;
@@ -386,7 +457,7 @@
   }
   .lang-name { font-weight: 500; color: var(--navy); }
   .lang-level { color: var(--mid); font-size: 0.78rem; }
- 
+
   /* ── CONTACT ── */
   #contact {
     background: var(--navy);
@@ -420,7 +491,7 @@
     border-color: #fff;
   }
   .contact-link.primary:hover { background: var(--ice); }
- 
+
   /* ── FOOTER ── */
   footer {
     background: var(--dark);
@@ -430,7 +501,7 @@
     color: rgba(255,255,255,0.3);
     letter-spacing: 0.06em;
   }
- 
+
   /* ── ANIMATIONS ── */
   .fade-up {
     opacity: 0;
@@ -441,7 +512,7 @@
     opacity: 1;
     transform: translateY(0);
   }
- 
+
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
@@ -449,17 +520,18 @@
     .hero { grid-template-columns: 1fr; }
     .hero-left { min-height: 60vh; padding: 7rem 2rem 3rem; }
     .hero-right { padding: 3rem 2rem; }
-    .about-grid, .edu-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .about-grid, .edu-grid, .projects-grid { grid-template-columns: 1fr; gap: 2rem; }
     .skills-grid { grid-template-columns: 1fr 1fr; }
     .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
     .exp-item::before { display: none; }
     .exp-meta { text-align: left; }
+    .project-link { font-size: 0.8rem; }
     section { padding: 4rem 1.5rem; }
   }
 </style>
 </head>
 <body>
- 
+
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">M. Mykhailov</a>
@@ -467,11 +539,12 @@
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
- 
+
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-left">
@@ -499,16 +572,16 @@
           <div class="stat-label">German proficiency</div>
         </div>
         <div class="stat">
-          <div class="stat-num">UA</div>
+          <div class="stat-num">User<br>Acquisition</div>
           <div class="stat-label">Industry experience</div>
         </div>
         <div class="stat">
-          <div class="stat-num">IBT</div>
+          <div class="stat-num">Business &<br>Technology</div>
           <div class="stat-label">Current degree focus</div>
         </div>
       </div>
     </div>
-    <a href="mailto:m.o.mykhailov@gmail.com" class="hero-cta">
+    <a href="#contact" class="hero-cta">
       Get in touch
       <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -516,7 +589,7 @@
     </a>
   </div>
 </section>
- 
+
 <!-- ABOUT -->
 <section id="about">
   <div class="section-inner">
@@ -553,14 +626,14 @@
     </div>
   </div>
 </section>
- 
+
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-inner">
     <p class="section-label fade-up">Work</p>
     <h2 class="fade-up">Experience</h2>
     <div class="exp-list">
- 
+
       <div class="exp-item fade-up">
         <div class="exp-meta">
           <span class="exp-date">Feb – May 2022</span>
@@ -578,7 +651,7 @@
           </ul>
         </div>
       </div>
- 
+
       <div class="exp-item fade-up">
         <div class="exp-meta">
           <span class="exp-date">2022 – 2025</span>
@@ -593,11 +666,11 @@
           </ul>
         </div>
       </div>
- 
+
     </div>
   </div>
 </section>
- 
+
 <!-- SKILLS -->
 <section id="skills">
   <div class="section-inner">
@@ -637,7 +710,62 @@
     </div>
   </div>
 </section>
- 
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <p class="section-label fade-up">Work</p>
+    <h2 class="fade-up">Selected Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card fade-up">
+        <div class="project-image">
+          <div class="project-placeholder">📊</div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">User Acquisition Dashboard</h3>
+          <p class="project-desc">Built an Excel-based dashboard to track campaign performance, user behavior, and optimization opportunities. Analyzed A/B test results and provided actionable insights for marketing teams.</p>
+          <div class="project-tags">
+            <span class="tag">Excel</span>
+            <span class="tag">Data Analysis</span>
+            <span class="tag">A/B Testing</span>
+          </div>
+          <a href="#" class="project-link">View project</a>
+        </div>
+      </div>
+      <div class="project-card fade-up">
+        <div class="project-image">
+          <div class="project-placeholder">📈</div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Campaign Performance Analysis</h3>
+          <p class="project-desc">Conducted comprehensive analysis of UA campaigns using Google Analytics and Tableau. Identified key performance indicators and recommended strategies for budget optimization.</p>
+          <div class="project-tags">
+            <span class="tag">Google Analytics</span>
+            <span class="tag">Tableau</span>
+            <span class="tag">Marketing Analytics</span>
+          </div>
+          <a href="#" class="project-link">View project</a>
+        </div>
+      </div>
+      <div class="project-card fade-up">
+        <div class="project-image">
+          <div class="project-placeholder">🧮</div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Mathematical Modeling Project</h3>
+          <p class="project-desc">Developed mathematical models for optimization problems using Python and R. Applied statistical methods to analyze data and predict outcomes in business scenarios.</p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">R</span>
+            <span class="tag">Statistics</span>
+          </div>
+          <a href="#" class="project-link">View project</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- EDUCATION -->
 <section id="education">
   <div class="section-inner">
@@ -657,7 +785,7 @@
         <div class="edu-desc">Focused on advanced mathematics and analytical problem-solving, with exposure to data science tools including R and Python, and introductory programming in C++.</div>
       </div>
     </div>
- 
+
     <div style="margin-top: 3.5rem;" class="fade-up">
       <p class="section-label">Languages</p>
       <div class="lang-row">
@@ -669,7 +797,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- CONTACT -->
 <section id="contact">
   <p class="section-label fade-up">Say hello</p>
@@ -681,12 +809,12 @@
     <a href="https://linktr.ee/m.o.mykhailov" target="_blank" class="contact-link">Linktree</a>
   </div>
 </section>
- 
+
 <!-- FOOTER -->
 <footer>
   Mykhailo Mykhailov &nbsp;·&nbsp; Dachau, Bavaria &nbsp;·&nbsp; 2025
 </footer>
- 
+
 <script>
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -696,9 +824,8 @@
       }
     });
   }, { threshold: 0.1 });
- 
+
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
- 
