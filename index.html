@@ -11,13 +11,13 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --navy:   #1a2a4a;
-    --navy2:  #2a4a7a;
-    --ice:    #aabbcc;
-    --cream:  #f7f5f0;
-    --dark:   #1a1a1a;
-    --mid:    #666;
-    --border: rgba(26,42,74,0.12);
+    --navy:   #0d1b2a;
+    --navy2:  #1b263b;
+    --ice:    #778da9;
+    --cream:  #faf9f6;
+    --dark:   #0d0d0d;
+    --mid:    #333;
+    --border: rgba(13,27,42,0.15);
   }
 
   html { scroll-behavior: smooth; }
@@ -301,9 +301,9 @@
   .skill-block {
     padding: 2rem;
     border: 1px solid rgba(170,187,204,0.1);
-    transition: background 0.2s;
+    cursor: default;
   }
-  .skill-block:hover { background: rgba(255,255,255,0.04); }
+  .skill-block:hover { background: transparent; }
   .skill-icon {
     width: 36px; height: 36px;
     border: 1px solid rgba(170,187,204,0.3);
@@ -528,11 +528,51 @@
     .project-link { font-size: 0.8rem; }
     section { padding: 4rem 1.5rem; }
   }
-</style>
+
+  .project-toggle{display:inline-flex;align-items:center;gap:.5rem;background:none;border:none;cursor:pointer;color:var(--navy);font-family:inherit;font-size:.85rem;font-weight:500;letter-spacing:.04em;margin-top:1rem;padding:0;padding-bottom:.25rem;border-bottom:2px solid transparent;transition:border-color .2s,color .2s}
+  .project-toggle:hover{border-bottom-color:var(--navy)}
+  .toggle-arrow{transition:transform .3s;display:inline-block}
+  .project-toggle[aria-expanded=true] .toggle-arrow{transform:rotate(180deg)}
+  .project-panel{background:#fff;border:1px solid var(--border);border-radius:2px;animation:panelSlide .35s ease;grid-column:1/-1;margin-top:-1rem;margin-bottom:.5rem}
+  @keyframes panelSlide{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+  .panel-inner{padding:2rem}
+  .panel-close{float:right;background:none;border:none;cursor:pointer;font-size:.8rem;color:var(--mid);font-family:inherit;font-weight:500;padding:0;transition:color .2s}
+  .panel-close:hover{color:var(--navy)}
+  .panel-title{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--navy);margin-bottom:1.5rem;clear:both}
+  .panel-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:1.75rem;overflow-x:auto}
+  .tab-btn{background:none;border:none;cursor:pointer;font-family:inherit;font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);padding:.6rem 1.2rem;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .2s,border-color .2s;white-space:nowrap}
+  .tab-btn.active{color:var(--navy);border-bottom-color:var(--navy)}
+  .tab-btn:hover{color:var(--navy)}
+  .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem}
+  .stat-box{border-left:2px solid var(--navy);padding-left:.85rem}
+  .stat-box-num{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--navy);line-height:1.2}
+  .stat-box-label{font-size:.75rem;color:var(--mid);line-height:1.4}
+  .panel-table-wrap{overflow-x:auto}
+  .panel-table-wrap table{width:100%;border-collapse:collapse;font-size:.82rem}
+  .panel-table-wrap th{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--navy2);font-weight:500;padding:.5rem .75rem;text-align:left;border-bottom:1px solid var(--border)}
+  .panel-table-wrap td{padding:.55rem .75rem;color:var(--mid);border-bottom:1px solid rgba(26,42,74,.06)}
+  .panel-table-wrap tr:last-child td{border-bottom:none}
+  .panel-table-wrap tr:hover td{background:rgba(26,42,74,.03)}
+  .data-table-wrap{overflow-x:auto;max-height:280px;overflow-y:auto}
+  .data-table-wrap table{width:100%;border-collapse:collapse;font-size:.78rem}
+  .data-table-wrap th{font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--navy2);font-weight:500;padding:.4rem .65rem;text-align:left;border-bottom:1px solid var(--border);position:sticky;top:0;background:#fff}
+  .data-table-wrap td{padding:.4rem .65rem;color:var(--mid);border-bottom:1px solid rgba(26,42,74,.05);font-family:monospace;font-size:.78rem}
+  .rec-badge{font-size:.68rem;font-weight:500;padding:.2rem .5rem;border-radius:2px;white-space:nowrap}
+  .rec-scale{background:rgba(26,107,58,.12);color:#1a6b3a}
+  .rec-review{background:rgba(192,57,43,.10);color:#c0392b}
+  .rec-maintain{background:rgba(26,42,74,.08);color:var(--navy2)}
+  .chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+  .chart-wrap{background:transparent;border:1px solid var(--border);border-radius:2px;padding:1rem}
+  .method-text p{font-size:.88rem;color:var(--mid);line-height:1.75;margin-bottom:1rem}
+  .method-text p:last-child{margin-bottom:0}
+  .method-text strong{color:var(--navy);font-weight:500}
+  @media(max-width:768px){.stats-row{grid-template-columns:1fr 1fr}.chart-grid{grid-template-columns:1fr}.panel-inner{padding:1.25rem}}
+
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
+
 <nav>
   <a href="#" class="nav-logo">M. Mykhailov</a>
   <ul class="nav-links">
@@ -545,7 +585,7 @@
   </ul>
 </nav>
 
-<!-- HERO -->
+
 <section class="hero" id="top">
   <div class="hero-left">
     <p class="hero-eyebrow">Portfolio</p>
@@ -590,7 +630,7 @@
   </div>
 </section>
 
-<!-- ABOUT -->
+
 <section id="about">
   <div class="section-inner">
     <p class="section-label fade-up">Background</p>
@@ -620,14 +660,14 @@
         </div>
         <div class="fact">
           <span class="fact-key">Contact</span>
-          <span class="fact-val">m.o.mykhailov@gmail.com</span>
+          <span class="fact-val"><a href="mailto:m.o.mykhailov@gmail.com">m.o.mykhailov@gmail.com</a></span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
+
 <section id="experience">
   <div class="section-inner">
     <p class="section-label fade-up">Work</p>
@@ -671,7 +711,7 @@
   </div>
 </section>
 
-<!-- SKILLS -->
+
 <section id="skills">
   <div class="section-inner">
     <p class="section-label fade-up">Toolkit</p>
@@ -711,62 +751,16 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="section-inner">
     <p class="section-label fade-up">Work</p>
     <h2 class="fade-up">Selected Projects</h2>
     <div class="projects-grid">
-      <div class="project-card fade-up">
-        <div class="project-image">
-          <div class="project-placeholder">📊</div>
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">User Acquisition Dashboard</h3>
-          <p class="project-desc">Built an Excel-based dashboard to track campaign performance, user behavior, and optimization opportunities. Analyzed A/B test results and provided actionable insights for marketing teams.</p>
-          <div class="project-tags">
-            <span class="tag">Excel</span>
-            <span class="tag">Data Analysis</span>
-            <span class="tag">A/B Testing</span>
-          </div>
-          <a href="#" class="project-link">View project</a>
-        </div>
-      </div>
-      <div class="project-card fade-up">
-        <div class="project-image">
-          <div class="project-placeholder">📈</div>
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">Campaign Performance Analysis</h3>
-          <p class="project-desc">Conducted comprehensive analysis of UA campaigns using Google Analytics and Tableau. Identified key performance indicators and recommended strategies for budget optimization.</p>
-          <div class="project-tags">
-            <span class="tag">Google Analytics</span>
-            <span class="tag">Tableau</span>
-            <span class="tag">Marketing Analytics</span>
-          </div>
-          <a href="#" class="project-link">View project</a>
-        </div>
-      </div>
-      <div class="project-card fade-up">
-        <div class="project-image">
-          <div class="project-placeholder">🧮</div>
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">Mathematical Modeling Project</h3>
-          <p class="project-desc">Developed mathematical models for optimization problems using Python and R. Applied statistical methods to analyze data and predict outcomes in business scenarios.</p>
-          <div class="project-tags">
-            <span class="tag">Python</span>
-            <span class="tag">R</span>
-            <span class="tag">Statistics</span>
-          </div>
-          <a href="#" class="project-link">View project</a>
-        </div>
-      </div>
+<div class="project-card fade-up" id="card-audit"><div class="project-image" style="background:#12233d;position:relative;overflow:hidden;"><svg width="100%" height="100%" viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;"><rect x="30" y="90" width="30" height="60" fill="rgba(170,187,204,0.18)" rx="1"/><rect x="75" y="60" width="30" height="90" fill="rgba(170,187,204,0.28)" rx="1"/><rect x="120" y="45" width="30" height="105" fill="rgba(170,187,204,0.45)" rx="1"/><rect x="165" y="70" width="30" height="80" fill="rgba(170,187,204,0.28)" rx="1"/><rect x="210" y="100" width="30" height="50" fill="rgba(170,187,204,0.18)" rx="1"/><polyline points="45,85 90,55 135,40 180,65 225,95 270,110" fill="none" stroke="rgba(170,187,204,0.7)" stroke-width="1.5" stroke-dasharray="4 2"/><circle cx="135" cy="40" r="3" fill="#fff"/></svg></div><div class="project-content"><h3 class="project-title">UA Channel Efficiency Audit</h3><p class="project-desc">Multi-channel UA audit across 6 platforms. CPI, CTR, and ROAS normalised into a weighted efficiency score with per-channel budget recommendations.</p><div class="project-tags"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">UA Analytics</span><span class="tag">Tableau</span></div><button class="project-toggle" onclick="toggleProject('audit')" aria-expanded="false">View project <span class="toggle-arrow">&#8595;</span></button></div></div><div class="project-panel" id="panel-audit" style="display:none"><div class="panel-inner"><button class="panel-close" onclick="toggleProject('audit')">Close &#10005;</button><h3 class="panel-title">UA Channel Efficiency Audit</h3><div class="panel-tabs"><button class="tab-btn active" onclick="switchTab('audit','overview',this)">Overview</button><button class="tab-btn" onclick="switchTab('audit','chart',this)">Charts</button><button class="tab-btn" onclick="switchTab('audit','data',this)">Data</button><button class="tab-btn" onclick="switchTab('audit','method',this)">Methodology</button></div><div class="tab-content" id="audit-overview"><div class="stats-row"><div class="stat-box"><div class="stat-box-num">6</div><div class="stat-box-label">Channels audited</div></div><div class="stat-box"><div class="stat-box-num">26</div><div class="stat-box-label">Weeks of data</div></div><div class="stat-box"><div class="stat-box-num" id="a-top">-</div><div class="stat-box-label">Top channel</div></div><div class="stat-box"><div class="stat-box-num" id="a-spr">-</div><div class="stat-box-label">CPI spread</div></div></div><div class="panel-table-wrap" id="audit-ov-table"></div></div><div class="tab-content" id="audit-chart" style="display:none"><div class="chart-grid"><div class="chart-wrap"><canvas id="c-a-scores"></canvas></div><div class="chart-wrap"><canvas id="c-a-scatter"></canvas></div></div></div><div class="tab-content" id="audit-data" style="display:none"><div class="data-table-wrap" id="audit-dt"></div></div><div class="tab-content" id="audit-method" style="display:none"><div class="method-text"><p>26-week UA audit across six mobile advertising platforms using synthetic campaign data.</p><p><strong>Data:</strong> Realistic impression ranges, CTR distributions, install rates, spend budgets, and ARPU per channel. Noise and outlier weeks injected to mimic real variance.</p><p><strong>Outlier removal:</strong> Weeks outside 1.5x IQR per channel on CPI, CTR, IR, or ROAS were excluded.</p><p><strong>Scoring:</strong> Min-max normalisation on four dimensions combined as: CPI 35%, ROAS 30%, IR 20%, CTR 15%. Scaled 0-100.</p><p><strong>Recommendations:</strong> Scale / Increase / Maintain / Review assigned per rank and ROAS thresholds.</p></div></div></div></div><div class="project-card fade-up" id="card-retention"><div class="project-image" style="background:#12233d;position:relative;overflow:hidden;"><svg width="100%" height="100%" viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;"><polygon points="60,20 280,20 255,55 85,55" fill="rgba(170,187,204,0.35)"/><polygon points="85,60 255,60 230,95 110,95" fill="rgba(170,187,204,0.28)"/><polygon points="110,100 230,100 210,135 130,135" fill="rgba(170,187,204,0.20)"/><polygon points="130,140 210,140 195,165 145,165" fill="rgba(170,187,204,0.13)"/><text x="170" y="42" font-size="9" fill="rgba(255,255,255,0.7)" font-family="monospace" text-anchor="middle">Impression to Click</text><text x="170" y="77" font-size="9" fill="rgba(255,255,255,0.6)" font-family="monospace" text-anchor="middle">Click to Install</text><text x="170" y="117" font-size="9" fill="rgba(255,255,255,0.5)" font-family="monospace" text-anchor="middle">Install to D1 Retained</text><text x="170" y="157" font-size="9" fill="rgba(255,255,255,0.4)" font-family="monospace" text-anchor="middle">D1 to D7</text></svg></div><div class="project-content"><h3 class="project-title">Mobile App Retention Funnel</h3><p class="project-desc">D1-D7-D30 cohort analysis across 12 weeks and 5 acquisition channels, with a power calculation for the highest-impact onboarding intervention.</p><div class="project-tags"><span class="tag">Python</span><span class="tag">Google Analytics 4</span><span class="tag">Cohort Analysis</span><span class="tag">A/B Testing</span></div><button class="project-toggle" onclick="toggleProject('retention')" aria-expanded="false">View project <span class="toggle-arrow">&#8595;</span></button></div></div><div class="project-panel" id="panel-retention" style="display:none"><div class="panel-inner"><button class="panel-close" onclick="toggleProject('retention')">Close &#10005;</button><h3 class="panel-title">Mobile App Retention Funnel</h3><div class="panel-tabs"><button class="tab-btn active" onclick="switchTab('retention','overview',this)">Overview</button><button class="tab-btn" onclick="switchTab('retention','chart',this)">Charts</button><button class="tab-btn" onclick="switchTab('retention','data',this)">Data</button><button class="tab-btn" onclick="switchTab('retention','method',this)">Methodology</button></div><div class="tab-content" id="retention-overview"><div class="stats-row"><div class="stat-box"><div class="stat-box-num">8,611</div><div class="stat-box-label">Total users</div></div><div class="stat-box"><div class="stat-box-num">42.9%</div><div class="stat-box-label">D1 retention</div></div><div class="stat-box"><div class="stat-box-num">10.1%</div><div class="stat-box-label">D7 retention</div></div><div class="stat-box"><div class="stat-box-num">~31 days</div><div class="stat-box-label">A/B test runtime</div></div></div><div class="panel-table-wrap" id="retention-ov-table"></div></div><div class="tab-content" id="retention-chart" style="display:none"><div class="chart-grid"><div class="chart-wrap"><canvas id="c-r-funnel"></canvas></div><div class="chart-wrap"><canvas id="c-r-cohort"></canvas></div></div></div><div class="tab-content" id="retention-data" style="display:none"><div class="data-table-wrap" id="retention-dt"></div></div><div class="tab-content" id="retention-method" style="display:none"><div class="method-text"><p>D1-D7-D30 retention model for a hypothetical mobile game across 12 weekly cohorts and 8,600+ users.</p><p><strong>Data:</strong> Per-user channel assignment with channel-specific baseline retention rates and a gradual improvement trend across cohort weeks.</p><p><strong>Funnel:</strong> Sequential gate model - D1 required for D7 eligibility, D7 required for D30.</p><p><strong>A/B test:</strong> Two-proportion z-test power calculation. Target: +5pp D1 lift. Alpha 0.05, power 80%. Result: ~1,556 users/group, ~31 days.</p></div></div></div></div><div class="project-card fade-up" id="card-regression"><div class="project-image" style="background:#12233d;position:relative;overflow:hidden;"><svg width="100%" height="100%" viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;"><line x1="40" y1="20" x2="40" y2="155" stroke="rgba(170,187,204,0.2)" stroke-width="1"/><line x1="40" y1="155" x2="310" y2="155" stroke="rgba(170,187,204,0.2)" stroke-width="1"/><line x1="55" y1="140" x2="300" y2="35" stroke="rgba(170,187,204,0.4)" stroke-width="1.5" stroke-dasharray="5 3"/><circle cx="70" cy="130" r="4" fill="rgba(170,187,204,0.5)"/><circle cx="115" cy="105" r="4" fill="rgba(170,187,204,0.5)"/><circle cx="160" cy="88" r="4" fill="rgba(170,187,204,0.5)"/><circle cx="205" cy="68" r="4" fill="rgba(170,187,204,0.5)"/><circle cx="230" cy="60" r="7" fill="rgba(255,255,255,0.7)"/><circle cx="275" cy="42" r="5" fill="rgba(170,187,204,0.5)"/><text x="260" y="85" font-size="8.5" fill="rgba(170,187,204,0.6)" font-family="monospace">R2=0.83</text></svg></div><div class="project-content"><h3 class="project-title">Ad Spend Regression &amp; Budget Forecaster</h3><p class="project-desc">Linear regression predicting install volume from weekly ad spend across 6 channels, packaged into a scenario-based budget forecaster.</p><div class="project-tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Excel</span><span class="tag">Regression</span></div><button class="project-toggle" onclick="toggleProject('regression')" aria-expanded="false">View project <span class="toggle-arrow">&#8595;</span></button></div></div><div class="project-panel" id="panel-regression" style="display:none"><div class="panel-inner"><button class="panel-close" onclick="toggleProject('regression')">Close &#10005;</button><h3 class="panel-title">Ad Spend Regression &amp; Budget Forecaster</h3><div class="panel-tabs"><button class="tab-btn active" onclick="switchTab('regression','overview',this)">Overview</button><button class="tab-btn" onclick="switchTab('regression','chart',this)">Charts</button><button class="tab-btn" onclick="switchTab('regression','data',this)">Data</button><button class="tab-btn" onclick="switchTab('regression','method',this)">Methodology</button></div><div class="tab-content" id="regression-overview"><div class="stats-row"><div class="stat-box"><div class="stat-box-num">6</div><div class="stat-box-label">Channels modelled</div></div><div class="stat-box"><div class="stat-box-num">52</div><div class="stat-box-label">Weeks of data</div></div><div class="stat-box"><div class="stat-box-num" id="r-bch">-</div><div class="stat-box-label">Best R2 channel</div></div><div class="stat-box"><div class="stat-box-num" id="r-br2">-</div><div class="stat-box-label">Best R2</div></div></div><div class="panel-table-wrap" id="regression-ov-table"></div></div><div class="tab-content" id="regression-chart" style="display:none"><div class="chart-grid"><div class="chart-wrap"><canvas id="c-g-r2"></canvas></div><div class="chart-wrap"><canvas id="c-g-fc"></canvas></div></div></div><div class="tab-content" id="regression-data" style="display:none"><div class="data-table-wrap" id="regression-dt"></div></div><div class="tab-content" id="regression-method" style="display:none"><div class="method-text"><p>Per-channel linear regression predicting weekly installs from ad spend, packaged as a budget forecaster.</p><p><strong>Data:</strong> 52 weeks synthetic data for 6 channels with realistic slopes and noise. Two outlier weeks per channel injected (0.35x and 1.9x installs).</p><p><strong>Model:</strong> scikit-learn LinearRegression, 80/20 train/test split, evaluated with R2 and MAE.</p><p><strong>Forecaster:</strong> Predicted installs at EUR 1k, 2k, 3.5k, 5k weekly budgets per channel.</p></div></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- EDUCATION -->
 <section id="education">
   <div class="section-inner">
     <p class="section-label fade-up">Academic</p>
@@ -798,11 +792,11 @@
   </div>
 </section>
 
-<!-- CONTACT -->
+
 <section id="contact">
   <p class="section-label fade-up">Say hello</p>
-  <h2 class="fade-up">Let's connect</h2>
-  <p class="fade-up">Open to internships, working student positions, and junior roles in analytics, data, or marketing operations — preferably in the Munich–Dachau–Nürnberg area.</p>
+  <h2 class="fade-up">Let&#39;s connect</h2>
+  <p class="fade-up">Open to internships, working student positions, and junior roles in analytics, data, or marketing operations &mdash; preferably in the Munich&ndash;Dachau&ndash;N&uuml;rnberg area.</p>
   <div class="contact-links fade-up">
     <a href="mailto:m.o.mykhailov@gmail.com" class="contact-link primary">m.o.mykhailov@gmail.com</a>
     <a href="tel:+4917225194770" class="contact-link">+49 172 251 9477</a>
@@ -810,22 +804,112 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  Mykhailo Mykhailov &nbsp;·&nbsp; Dachau, Bavaria &nbsp;·&nbsp; 2025
+  Mykhailo Mykhailov &nbsp;&middot;&nbsp; Dachau, Bavaria &nbsp;&middot;&nbsp; 2025
 </footer>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
+var PD={"regression": {"summary": [{"channel": "Apple Search", "coef_per_100eur": 1.13, "intercept": 168.7, "r2": 0.04, "mae": 30.8, "avg_cpi_eur": 6.24, "avg_weekly_spend": 1089.0, "avg_weekly_installs": 182.0}, {"channel": "Facebook", "coef_per_100eur": 3.88, "intercept": 130.0, "r2": 0.47, "mae": 43.4, "avg_cpi_eur": 12.01, "avg_weekly_spend": 2702.0, "avg_weekly_installs": 234.0}, {"channel": "Google UAC", "coef_per_100eur": 4.42, "intercept": 100.3, "r2": 0.16, "mae": 88.9, "avg_cpi_eur": 99.25, "avg_weekly_spend": 2438.0, "avg_weekly_installs": 217.0}, {"channel": "Snapchat", "coef_per_100eur": 5.3, "intercept": 55.6, "r2": 0.22, "mae": 68.0, "avg_cpi_eur": 163.96, "avg_weekly_spend": 965.0, "avg_weekly_installs": 103.0}, {"channel": "TikTok", "coef_per_100eur": 5.29, "intercept": 103.5, "r2": -0.9, "mae": 88.9, "avg_cpi_eur": 157.99, "avg_weekly_spend": 1608.0, "avg_weekly_installs": 172.0}, {"channel": "YouTube", "coef_per_100eur": 4.45, "intercept": 166.7, "r2": 0.28, "mae": 47.3, "avg_cpi_eur": 8.08, "avg_weekly_spend": 2061.0, "avg_weekly_installs": 257.0}], "forecast": [{"channel": "Apple Search", "weekly_budget_eur": 1000, "predicted_installs": 180, "predicted_cpi_eur": 5.56}, {"channel": "Apple Search", "weekly_budget_eur": 2000, "predicted_installs": 191, "predicted_cpi_eur": 10.45}, {"channel": "Apple Search", "weekly_budget_eur": 3500, "predicted_installs": 208, "predicted_cpi_eur": 16.81}, {"channel": "Apple Search", "weekly_budget_eur": 5000, "predicted_installs": 225, "predicted_cpi_eur": 22.2}, {"channel": "Facebook", "weekly_budget_eur": 1000, "predicted_installs": 169, "predicted_cpi_eur": 5.92}, {"channel": "Facebook", "weekly_budget_eur": 2000, "predicted_installs": 208, "predicted_cpi_eur": 9.63}, {"channel": "Facebook", "weekly_budget_eur": 3500, "predicted_installs": 266, "predicted_cpi_eur": 13.17}, {"channel": "Facebook", "weekly_budget_eur": 5000, "predicted_installs": 324, "predicted_cpi_eur": 15.43}, {"channel": "Google UAC", "weekly_budget_eur": 1000, "predicted_installs": 144, "predicted_cpi_eur": 6.92}, {"channel": "Google UAC", "weekly_budget_eur": 2000, "predicted_installs": 189, "predicted_cpi_eur": 10.6}, {"channel": "Google UAC", "weekly_budget_eur": 3500, "predicted_installs": 255, "predicted_cpi_eur": 13.73}, {"channel": "Google UAC", "weekly_budget_eur": 5000, "predicted_installs": 321, "predicted_cpi_eur": 15.57}, {"channel": "Snapchat", "weekly_budget_eur": 1000, "predicted_installs": 109, "predicted_cpi_eur": 9.2}, {"channel": "Snapchat", "weekly_budget_eur": 2000, "predicted_installs": 162, "predicted_cpi_eur": 12.37}, {"channel": "Snapchat", "weekly_budget_eur": 3500, "predicted_installs": 241, "predicted_cpi_eur": 14.51}, {"channel": "Snapchat", "weekly_budget_eur": 5000, "predicted_installs": 321, "predicted_cpi_eur": 15.59}, {"channel": "TikTok", "weekly_budget_eur": 1000, "predicted_installs": 156, "predicted_cpi_eur": 6.39}, {"channel": "TikTok", "weekly_budget_eur": 2000, "predicted_installs": 209, "predicted_cpi_eur": 9.55}, {"channel": "TikTok", "weekly_budget_eur": 3500, "predicted_installs": 289, "predicted_cpi_eur": 12.12}, {"channel": "TikTok", "weekly_budget_eur": 5000, "predicted_installs": 368, "predicted_cpi_eur": 13.59}, {"channel": "YouTube", "weekly_budget_eur": 1000, "predicted_installs": 211, "predicted_cpi_eur": 4.73}, {"channel": "YouTube", "weekly_budget_eur": 2000, "predicted_installs": 256, "predicted_cpi_eur": 7.82}, {"channel": "YouTube", "weekly_budget_eur": 3500, "predicted_installs": 323, "predicted_cpi_eur": 10.85}, {"channel": "YouTube", "weekly_budget_eur": 5000, "predicted_installs": 389, "predicted_cpi_eur": 12.84}], "raw_sample": [{"week": 1, "channel": "Facebook", "spend_eur": 3663.64, "installs": 319, "cpi": 11.48}, {"week": 2, "channel": "Facebook", "spend_eur": 2423.85, "installs": 287, "cpi": 8.45}, {"week": 3, "channel": "Facebook", "spend_eur": 3976.81, "installs": 194, "cpi": 20.5}, {"week": 4, "channel": "Facebook", "spend_eur": 3380.26, "installs": 257, "cpi": 13.15}, {"week": 5, "channel": "Facebook", "spend_eur": 1148.46, "installs": 137, "cpi": 8.38}, {"week": 6, "channel": "Facebook", "spend_eur": 4409.8, "installs": 281, "cpi": 15.69}, {"week": 7, "channel": "Facebook", "spend_eur": 3616.22, "installs": 272, "cpi": 13.29}, {"week": 8, "channel": "Facebook", "spend_eur": 3708.44, "installs": 418, "cpi": 8.87}, {"week": 9, "channel": "Facebook", "spend_eur": 1274.02, "installs": 112, "cpi": 11.38}, {"week": 10, "channel": "Facebook", "spend_eur": 2466.43, "installs": 316, "cpi": 7.81}, {"week": 11, "channel": "Facebook", "spend_eur": 2171.95, "installs": 90, "cpi": 24.13}, {"week": 12, "channel": "Facebook", "spend_eur": 4229.03, "installs": 296, "cpi": 14.29}, {"week": 13, "channel": "Facebook", "spend_eur": 3182.3, "installs": 286, "cpi": 11.13}, {"week": 14, "channel": "Facebook", "spend_eur": 3844.22, "installs": 666, "cpi": 5.76}, {"week": 15, "channel": "Facebook", "spend_eur": 2440.63, "installs": 294, "cpi": 8.3}, {"week": 16, "channel": "Facebook", "spend_eur": 1640.78, "installs": 262, "cpi": 6.26}, {"week": 17, "channel": "Facebook", "spend_eur": 2851.96, "installs": 229, "cpi": 12.45}, {"week": 18, "channel": "Facebook", "spend_eur": 1036.12, "installs": 133, "cpi": 7.79}, {"week": 19, "channel": "Facebook", "spend_eur": 3862.24, "installs": 374, "cpi": 10.33}, {"week": 20, "channel": "Facebook", "spend_eur": 3137.16, "installs": 255, "cpi": 12.3}, {"week": 21, "channel": "Facebook", "spend_eur": 3604.92, "installs": 191, "cpi": 18.87}, {"week": 22, "channel": "Facebook", "spend_eur": 2111.75, "installs": 131, "cpi": 16.12}, {"week": 23, "channel": "Facebook", "spend_eur": 4391.58, "installs": 257, "cpi": 17.09}, {"week": 24, "channel": "Facebook", "spend_eur": 4104.55, "installs": 357, "cpi": 11.5}, {"week": 25, "channel": "Facebook", "spend_eur": 3680.02, "installs": 308, "cpi": 11.95}, {"week": 26, "channel": "Facebook", "spend_eur": 1520.16, "installs": 248, "cpi": 6.13}, {"week": 27, "channel": "Facebook", "spend_eur": 2526.87, "installs": 207, "cpi": 12.21}, {"week": 28, "channel": "Facebook", "spend_eur": 962.07, "installs": 179, "cpi": 5.37}, {"week": 29, "channel": "Facebook", "spend_eur": 1370.87, "installs": 236, "cpi": 5.81}, {"week": 30, "channel": "Facebook", "spend_eur": 3327.28, "installs": 255, "cpi": 13.05}]}, "audit": {"report": [{"rank": 1, "channel": "Apple Search", "efficiency_score": 100.0, "recommendation": "Scale \u2014 top performer", "avg_cpi": 10.75, "avg_ctr": 6.25, "avg_ir": 6.58, "avg_roas": 0.46, "avg_cpm": 40.92, "total_spend_eur": 30705.69, "total_revenue_eur": 12584.06, "total_installs": 3504, "overall_roas": 0.41, "weeks_analysed": 24}, {"rank": 2, "channel": "TikTok", "efficiency_score": 32.8, "recommendation": "Scale \u2014 top performer", "avg_cpi": 19.2, "avg_ctr": 3.54, "avg_ir": 3.07, "avg_roas": 0.07, "avg_cpm": 20.37, "total_spend_eur": 52113.72, "total_revenue_eur": 3408.44, "total_installs": 2846, "overall_roas": 0.06, "weeks_analysed": 21}, {"rank": 3, "channel": "Facebook", "efficiency_score": 32.5, "recommendation": "Review creatives / pause", "avg_cpi": 22.28, "avg_ctr": 2.67, "avg_ir": 4.15, "avg_roas": 0.09, "avg_cpm": 24.32, "total_spend_eur": 71181.54, "total_revenue_eur": 6095.3, "total_installs": 3419, "overall_roas": 0.09, "weeks_analysed": 21}, {"rank": 4, "channel": "Google UAC", "efficiency_score": 20.4, "recommendation": "Review creatives / pause", "avg_cpi": 30.32, "avg_ctr": 2.13, "avg_ir": 4.58, "avg_roas": 0.08, "avg_cpm": 29.4, "total_spend_eur": 53887.63, "total_revenue_eur": 3965.32, "total_installs": 1838, "overall_roas": 0.07, "weeks_analysed": 19}, {"rank": 4, "channel": "Snapchat", "efficiency_score": 20.4, "recommendation": "Review creatives / pause", "avg_cpi": 24.52, "avg_ctr": 3.25, "avg_ir": 2.62, "avg_roas": 0.05, "avg_cpm": 18.98, "total_spend_eur": 27075.71, "total_revenue_eur": 1152.27, "total_installs": 1285, "overall_roas": 0.04, "weeks_analysed": 25}, {"rank": 6, "channel": "YouTube", "efficiency_score": 19.0, "recommendation": "Review creatives / pause", "avg_cpi": 34.47, "avg_ctr": 1.39, "avg_ir": 5.84, "avg_roas": 0.09, "avg_cpm": 27.74, "total_spend_eur": 37686.49, "total_revenue_eur": 3151.83, "total_installs": 1163, "overall_roas": 0.08, "weeks_analysed": 18}], "raw_sample": [{"week": 1, "channel": "Facebook", "impressions": 193388, "clicks": 5706, "installs": 226, "spend_eur": 2408.06, "revenue_eur": 367.97, "ctr": 0.03, "ir": 0.04, "cpi": 10.66, "roas": 0.153}, {"week": 2, "channel": "Facebook", "impressions": 155011, "clicks": 3565, "installs": 151, "spend_eur": 4017.32, "revenue_eur": 329.14, "ctr": 0.023, "ir": 0.042, "cpi": 26.6, "roas": 0.082}, {"week": 3, "channel": "Facebook", "impressions": 94289, "clicks": 2872, "installs": 129, "spend_eur": 2488.15, "revenue_eur": 230.79, "ctr": 0.03, "ir": 0.045, "cpi": 19.29, "roas": 0.093}, {"week": 4, "channel": "Facebook", "impressions": 136152, "clicks": 3792, "installs": 181, "spend_eur": 4487.85, "revenue_eur": 393.65, "ctr": 0.028, "ir": 0.048, "cpi": 24.79, "roas": 0.088}, {"week": 5, "channel": "Facebook", "impressions": 164032, "clicks": 3526, "installs": 93, "spend_eur": 2232.57, "revenue_eur": 183.67, "ctr": 0.022, "ir": 0.026, "cpi": 24.01, "roas": 0.082}, {"week": 6, "channel": "Facebook", "impressions": 154661, "clicks": 4541, "installs": 196, "spend_eur": 3190.2, "revenue_eur": 355.25, "ctr": 0.029, "ir": 0.043, "cpi": 16.28, "roas": 0.111}, {"week": 7, "channel": "Facebook", "impressions": 177013, "clicks": 4913, "installs": 211, "spend_eur": 3141.56, "revenue_eur": 331.22, "ctr": 0.028, "ir": 0.043, "cpi": 14.89, "roas": 0.105}, {"week": 8, "channel": "Facebook", "impressions": 190060, "clicks": 5462, "installs": 184, "spend_eur": 3668.49, "revenue_eur": 279.25, "ctr": 0.029, "ir": 0.034, "cpi": 19.94, "roas": 0.076}, {"week": 9, "channel": "Facebook", "impressions": 166517, "clicks": 4635, "installs": 229, "spend_eur": 2217.04, "revenue_eur": 364.58, "ctr": 0.028, "ir": 0.049, "cpi": 9.68, "roas": 0.164}, {"week": 10, "channel": "Facebook", "impressions": 124344, "clicks": 3550, "installs": 151, "spend_eur": 4087.31, "revenue_eur": 302.77, "ctr": 0.028, "ir": 0.042, "cpi": 27.07, "roas": 0.074}, {"week": 11, "channel": "Facebook", "impressions": 85053, "clicks": 1718, "installs": 84, "spend_eur": 3170.99, "revenue_eur": 190.02, "ctr": 0.02, "ir": 0.049, "cpi": 37.75, "roas": 0.06}, {"week": 12, "channel": "Facebook", "impressions": 169012, "clicks": 6436, "installs": 311, "spend_eur": 1959.98, "revenue_eur": 536.56, "ctr": 0.038, "ir": 0.048, "cpi": 6.3, "roas": 0.274}, {"week": 13, "channel": "Facebook", "impressions": 151799, "clicks": 4105, "installs": 195, "spend_eur": 2824.5, "revenue_eur": 464.37, "ctr": 0.027, "ir": 0.048, "cpi": 14.48, "roas": 0.164}, {"week": 14, "channel": "Facebook", "impressions": 118764, "clicks": 4186, "installs": 152, "spend_eur": 3522.59, "revenue_eur": 310.97, "ctr": 0.035, "ir": 0.036, "cpi": 23.17, "roas": 0.088}, {"week": 15, "channel": "Facebook", "impressions": 194811, "clicks": 4289, "installs": 159, "spend_eur": 2886.75, "revenue_eur": 222.97, "ctr": 0.022, "ir": 0.037, "cpi": 18.16, "roas": 0.077}, {"week": 16, "channel": "Facebook", "impressions": 98094, "clicks": 3312, "installs": 102, "spend_eur": 3613.77, "revenue_eur": 166.1, "ctr": 0.034, "ir": 0.031, "cpi": 35.43, "roas": 0.046}, {"week": 17, "channel": "Facebook", "impressions": 139647, "clicks": 3584, "installs": 147, "spend_eur": 4081.7, "revenue_eur": 344.55, "ctr": 0.026, "ir": 0.041, "cpi": 27.77, "roas": 0.084}, {"week": 18, "channel": "Facebook", "impressions": 184889, "clicks": 4871, "installs": 189, "spend_eur": 2192.74, "revenue_eur": 285.13, "ctr": 0.026, "ir": 0.039, "cpi": 11.6, "roas": 0.13}, {"week": 19, "channel": "Facebook", "impressions": 170026, "clicks": 4500, "installs": 202, "spend_eur": 4186.95, "revenue_eur": 405.44, "ctr": 0.026, "ir": 0.045, "cpi": 20.73, "roas": 0.097}, {"week": 20, "channel": "Facebook", "impressions": 191348, "clicks": 4283, "installs": 179, "spend_eur": 2909.58, "revenue_eur": 279.39, "ctr": 0.022, "ir": 0.042, "cpi": 16.25, "roas": 0.096}, {"week": 21, "channel": "Facebook", "impressions": 165604, "clicks": 4616, "installs": 219, "spend_eur": 3278.62, "revenue_eur": 361.92, "ctr": 0.028, "ir": 0.047, "cpi": 14.97, "roas": 0.11}, {"week": 22, "channel": "Facebook", "impressions": 84566, "clicks": 2365, "installs": 110, "spend_eur": 2804.9, "revenue_eur": 146.16, "ctr": 0.028, "ir": 0.046, "cpi": 25.5, "roas": 0.052}, {"week": 23, "channel": "Facebook", "impressions": 188864, "clicks": 3350, "installs": 132, "spend_eur": 2956.19, "revenue_eur": 247.68, "ctr": 0.018, "ir": 0.039, "cpi": 22.4, "roas": 0.084}, {"week": 24, "channel": "Facebook", "impressions": 94747, "clicks": 3724, "installs": 130, "spend_eur": 3393.79, "revenue_eur": 267.01, "ctr": 0.039, "ir": 0.035, "cpi": 26.11, "roas": 0.079}, {"week": 25, "channel": "Facebook", "impressions": 183658, "clicks": 4979, "installs": 200, "spend_eur": 4254.78, "revenue_eur": 292.54, "ctr": 0.027, "ir": 0.04, "cpi": 21.27, "roas": 0.069}, {"week": 26, "channel": "Facebook", "impressions": 122649, "clicks": 2795, "installs": 115, "spend_eur": 3833.04, "revenue_eur": 252.39, "ctr": 0.023, "ir": 0.041, "cpi": 33.33, "roas": 0.066}, {"week": 1, "channel": "TikTok", "impressions": 137261, "clicks": 4410, "installs": 163, "spend_eur": 1232.82, "revenue_eur": 210.68, "ctr": 0.032, "ir": 0.037, "cpi": 7.56, "roas": 0.171}, {"week": 2, "channel": "TikTok", "impressions": 76411, "clicks": 2594, "installs": 78, "spend_eur": 2869.45, "revenue_eur": 78.24, "ctr": 0.034, "ir": 0.03, "cpi": 36.79, "roas": 0.027}, {"week": 3, "channel": "TikTok", "impressions": 83148, "clicks": 1949, "installs": 70, "spend_eur": 1995.94, "revenue_eur": 106.59, "ctr": 0.023, "ir": 0.036, "cpi": 28.51, "roas": 0.053}, {"week": 4, "channel": "TikTok", "impressions": 83822, "clicks": 2700, "installs": 96, "spend_eur": 1824.51, "revenue_eur": 146.44, "ctr": 0.032, "ir": 0.036, "cpi": 19.01, "roas": 0.08}]}, "retention": {"funnel": [{"stage": "Install", "users": 8611, "pct_of_total": 100.0, "step_dropoff": 0.0}, {"stage": "D1 Retained", "users": 3697, "pct_of_total": 42.9, "step_dropoff": 57.1}, {"stage": "D7 Retained", "users": 870, "pct_of_total": 10.1, "step_dropoff": 76.5}, {"stage": "D30 Retained", "users": 104, "pct_of_total": 1.2, "step_dropoff": 88.0}], "by_channel": [{"channel": "Organic", "installs": 1384, "d1_retained": 812, "d7_retained": 277, "d30_retained": 46, "d1_rate": 58.7, "d7_rate": 20.0, "d30_rate": 3.3}, {"channel": "Apple Search", "installs": 1010, "d1_retained": 488, "d7_retained": 130, "d30_retained": 15, "d1_rate": 48.3, "d7_rate": 12.9, "d30_rate": 1.5}, {"channel": "Google UAC", "installs": 1810, "d1_retained": 757, "d7_retained": 169, "d30_retained": 19, "d1_rate": 41.8, "d7_rate": 9.3, "d30_rate": 1.0}, {"channel": "Facebook", "installs": 2551, "d1_retained": 1019, "d7_retained": 196, "d30_retained": 19, "d1_rate": 39.9, "d7_rate": 7.7, "d30_rate": 0.7}, {"channel": "TikTok", "installs": 1856, "d1_retained": 621, "d7_retained": 98, "d30_retained": 5, "d1_rate": 33.5, "d7_rate": 5.3, "d30_rate": 0.3}], "by_cohort": [{"cohort_week": 1, "installs": 620, "d1_retained": 248, "d7_retained": 45, "d30_retained": 3, "d1_rate": 40.0, "d7_rate": 7.3, "d30_rate": 0.5}, {"cohort_week": 2, "installs": 812, "d1_retained": 320, "d7_retained": 80, "d30_retained": 8, "d1_rate": 39.4, "d7_rate": 9.9, "d30_rate": 1.0}, {"cohort_week": 3, "installs": 736, "d1_retained": 303, "d7_retained": 65, "d30_retained": 3, "d1_rate": 41.2, "d7_rate": 8.8, "d30_rate": 0.4}, {"cohort_week": 4, "installs": 777, "d1_retained": 325, "d7_retained": 75, "d30_retained": 8, "d1_rate": 41.8, "d7_rate": 9.7, "d30_rate": 1.0}, {"cohort_week": 5, "installs": 599, "d1_retained": 238, "d7_retained": 56, "d30_retained": 6, "d1_rate": 39.7, "d7_rate": 9.3, "d30_rate": 1.0}, {"cohort_week": 6, "installs": 817, "d1_retained": 366, "d7_retained": 78, "d30_retained": 11, "d1_rate": 44.8, "d7_rate": 9.5, "d30_rate": 1.3}, {"cohort_week": 7, "installs": 665, "d1_retained": 267, "d7_retained": 75, "d30_retained": 10, "d1_rate": 40.2, "d7_rate": 11.3, "d30_rate": 1.5}, {"cohort_week": 8, "installs": 786, "d1_retained": 354, "d7_retained": 82, "d30_retained": 12, "d1_rate": 45.0, "d7_rate": 10.4, "d30_rate": 1.5}, {"cohort_week": 9, "installs": 608, "d1_retained": 271, "d7_retained": 70, "d30_retained": 9, "d1_rate": 44.6, "d7_rate": 11.5, "d30_rate": 1.5}, {"cohort_week": 10, "installs": 735, "d1_retained": 327, "d7_retained": 75, "d30_retained": 10, "d1_rate": 44.5, "d7_rate": 10.2, "d30_rate": 1.4}, {"cohort_week": 11, "installs": 717, "d1_retained": 348, "d7_retained": 86, "d30_retained": 11, "d1_rate": 48.5, "d7_rate": 12.0, "d30_rate": 1.5}, {"cohort_week": 12, "installs": 739, "d1_retained": 330, "d7_retained": 83, "d30_retained": 13, "d1_rate": 44.7, "d7_rate": 11.2, "d30_rate": 1.8}], "ab_plan": [{"intervention": "Redesigned onboarding (shorter tutorial + earlier reward)", "target_metric": "D1 Retention Rate", "baseline_rate_pct": 42.9, "target_rate_pct": 47.9, "min_detectable_lift_pp": 5.0, "alpha": 0.05, "power": 0.8, "required_n_per_group": 1556, "total_sample_needed": 3112, "est_days_to_significance": 31}], "raw_sample": [{"user_id": 1, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Google UAC", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 2, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "TikTok", "retained_d1": 1, "retained_d7": 0, "retained_d30": 0}, {"user_id": 3, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Organic", "retained_d1": 1, "retained_d7": 1, "retained_d30": 0}, {"user_id": 4, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "TikTok", "retained_d1": 1, "retained_d7": 0, "retained_d30": 0}, {"user_id": 5, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "TikTok", "retained_d1": 1, "retained_d7": 0, "retained_d30": 0}, {"user_id": 6, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Facebook", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 7, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Facebook", "retained_d1": 1, "retained_d7": 0, "retained_d30": 0}, {"user_id": 8, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Organic", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 9, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Facebook", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 10, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Google UAC", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 11, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Facebook", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 12, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Google UAC", "retained_d1": 1, "retained_d7": 0, "retained_d30": 0}, {"user_id": 13, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Apple Search", "retained_d1": 1, "retained_d7": 0, "retained_d30": 0}, {"user_id": 14, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Apple Search", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 15, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Facebook", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 16, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Google UAC", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 17, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Facebook", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 18, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Organic", "retained_d1": 1, "retained_d7": 0, "retained_d30": 0}, {"user_id": 19, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Organic", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 20, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "TikTok", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 21, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Google UAC", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 22, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Facebook", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 23, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Google UAC", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 24, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Organic", "retained_d1": 1, "retained_d7": 0, "retained_d30": 0}, {"user_id": 25, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Google UAC", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 26, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "TikTok", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 27, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "TikTok", "retained_d1": 1, "retained_d7": 0, "retained_d30": 0}, {"user_id": 28, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Google UAC", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 29, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Organic", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}, {"user_id": 30, "cohort_week": 1, "cohort_date": "2024-01-01", "channel": "Apple Search", "retained_d1": 0, "retained_d7": 0, "retained_d30": 0}]}};
+var N='#1a2a4a',N2='#2a4a7a',IC='#aabbcc',MI='#888',GR='#1a6b3a',RE='#c0392b';
+Chart.defaults.font.family='DM Sans,sans-serif';
+Chart.defaults.color=MI;
+Chart.defaults.plugins.legend.labels.usePointStyle=true;
+Chart.defaults.plugins.legend.labels.pointStyle='circle';
+Chart.defaults.plugins.legend.labels.boxWidth=6;
+Chart.defaults.plugins.legend.labels.padding=14;
+var CI={};
+function dc(id){if(CI[id]){CI[id].destroy();delete CI[id];}}
+function rb(r){if(!r)return'';var c=r.includes('Scale')?'rec-scale':r.includes('Review')?'rec-review':'rec-maintain';return'<span class="rec-badge '+c+'">'+r+'</span>';}
+function mt(rows,cols){if(!rows||!rows.length)return'';var h='<table><thead><tr>'+cols.map(function(c){return'<th>'+(c.l||c.k)+'</th>';}).join('')+'</tr></thead><tbody>';rows.forEach(function(r){h+='<tr>'+cols.map(function(c){return'<td>'+(r[c.k]!==undefined?r[c.k]:'')+'</td>';}).join('')+'</tr>';});return h+'</tbody></table>';}
 
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+function toggleProject(key){
+  var panel=document.getElementById('panel-'+key);
+  var btn=document.querySelector('#card-'+key+' .project-toggle');
+  var isOpen=panel.style.display!=='none';
+  ['audit','retention','regression'].forEach(function(k){
+    document.getElementById('panel-'+k).style.display='none';
+    var b=document.querySelector('#card-'+k+' .project-toggle');
+    if(b)b.setAttribute('aria-expanded','false');
+  });
+  if(!isOpen){
+    var grid=document.querySelector('#card-'+key).parentElement;
+    grid.insertBefore(panel,document.getElementById('card-'+key).nextSibling);
+    panel.style.display='';
+    btn.setAttribute('aria-expanded','true');
+    setTimeout(function(){panel.scrollIntoView({behavior:'smooth',block:'nearest'});},50);
+    initPanel(key);
+  }
+}
+
+function switchTab(project,tab,btn){
+  var panel=document.getElementById('panel-'+project);
+  panel.querySelectorAll('.tab-content').forEach(function(el){el.style.display='none';});
+  panel.querySelectorAll('.tab-btn').forEach(function(el){el.classList.remove('active');});
+  document.getElementById(project+'-'+tab).style.display='';
+  btn.classList.add('active');
+  if(tab==='chart')renderCharts(project);
+}
+
+function initPanel(k){
+  if(k==='audit'){
+    var d=PD.audit.report;
+    document.getElementById('a-top').textContent=d[0].channel;
+    var cp=d.map(function(r){return r.avg_cpi;});
+    document.getElementById('a-spr').textContent='\u20ac'+(Math.max.apply(null,cp)-Math.min.apply(null,cp)).toFixed(2);
+    var h='<table><thead><tr><th>#</th><th>Channel</th><th>Score</th><th>Avg CPI</th><th>CTR%</th><th>ROAS</th><th>Action</th></tr></thead><tbody>';
+    d.forEach(function(r){h+='<tr><td>'+r.rank+'</td><td><strong style="color:var(--navy)">'+r.channel+'</strong></td><td>'+r.efficiency_score+'</td><td>\u20ac'+r.avg_cpi+'</td><td>'+r.avg_ctr+'%</td><td>'+r.avg_roas+'x</td><td>'+rb(r.recommendation)+'</td></tr>';});
+    document.getElementById('audit-ov-table').innerHTML=h+'</tbody></table>';
+    document.getElementById('audit-dt').innerHTML=mt(PD.audit.raw_sample,[{k:'week',l:'Week'},{k:'channel',l:'Channel'},{k:'impressions',l:'Impressions'},{k:'clicks',l:'Clicks'},{k:'installs',l:'Installs'},{k:'spend_eur',l:'Spend'},{k:'ctr',l:'CTR'},{k:'cpi',l:'CPI'},{k:'roas',l:'ROAS'}]);
+  }
+  if(k==='retention'){
+    var ch=PD.retention.by_channel;
+    var h='<table><thead><tr><th>Channel</th><th>Installs</th><th>D1%</th><th>D7%</th><th>D30%</th></tr></thead><tbody>';
+    ch.forEach(function(r){h+='<tr><td><strong style="color:var(--navy)">'+r.channel+'</strong></td><td>'+r.installs.toLocaleString()+'</td><td>'+r.d1_rate+'%</td><td>'+r.d7_rate+'%</td><td>'+r.d30_rate+'%</td></tr>';});
+    document.getElementById('retention-ov-table').innerHTML=h+'</tbody></table>';
+    document.getElementById('retention-dt').innerHTML=mt(PD.retention.raw_sample,[{k:'user_id',l:'User ID'},{k:'cohort_week',l:'Cohort Wk'},{k:'channel',l:'Channel'},{k:'retained_d1',l:'D1'},{k:'retained_d7',l:'D7'},{k:'retained_d30',l:'D30'}]);
+  }
+  if(k==='regression'){
+    var d=PD.regression.summary;
+    var best=d.reduce(function(a,b){return b.r2>a.r2?b:a;});
+    document.getElementById('r-bch').textContent=best.channel;
+    document.getElementById('r-br2').textContent=best.r2;
+    var s=d.slice().sort(function(a,b){return b.r2-a.r2;});
+    var h='<table><thead><tr><th>Channel</th><th>Installs/\u20ac100</th><th>R2</th><th>MAE</th><th>Avg CPI</th><th>Avg Installs/wk</th></tr></thead><tbody>';
+    s.forEach(function(r){h+='<tr><td><strong style="color:var(--navy)">'+r.channel+'</strong></td><td>'+r.coef_per_100eur+'</td><td>'+r.r2+'</td><td>'+r.mae+'</td><td>\u20ac'+r.avg_cpi_eur+'</td><td>'+r.avg_weekly_installs+'</td></tr>';});
+    document.getElementById('regression-ov-table').innerHTML=h+'</tbody></table>';
+    document.getElementById('regression-dt').innerHTML=mt(PD.regression.raw_sample,[{k:'week',l:'Week'},{k:'channel',l:'Channel'},{k:'spend_eur',l:'Spend'},{k:'installs',l:'Installs'},{k:'cpi',l:'CPI'}]);
+  }
+}
+
+function renderCharts(k){
+  if(k==='audit'){
+    dc('c-a-scores');dc('c-a-scatter');
+    var d=PD.audit.report;
+    CI['c-a-scores']=new Chart(document.getElementById('c-a-scores'),{type:'bar',data:{labels:d.map(function(r){return r.channel;}),datasets:[{label:'Score',data:d.map(function(r){return r.efficiency_score;}),backgroundColor:d.map(function(r){return r.rank<=2?GR:r.rank>=5?RE:IC;}),borderRadius:2}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},title:{display:true,text:'Channel Efficiency Score',color:N}},scales:{x:{max:110}}}});
+    CI['c-a-scatter']=new Chart(document.getElementById('c-a-scatter'),{type:'scatter',data:{datasets:d.map(function(r){return{label:r.channel,data:[{x:r.avg_cpi,y:r.avg_roas}],backgroundColor:r.rank<=2?GR:r.rank>=5?RE:N2,pointRadius:7};})},options:{responsive:true,plugins:{title:{display:true,text:'CPI vs ROAS',color:N},tooltip:{callbacks:{label:function(c){return c.dataset.label+': \u20ac'+c.parsed.x+' CPI, '+c.parsed.y+'x ROAS';}}}},scales:{x:{title:{display:true,text:'Avg CPI (\u20ac)'}},y:{title:{display:true,text:'Avg ROAS'}}}}});
+  }
+  if(k==='retention'){
+    dc('c-r-funnel');dc('c-r-cohort');
+    var f=PD.retention.funnel;
+    CI['c-r-funnel']=new Chart(document.getElementById('c-r-funnel'),{type:'bar',data:{labels:f.map(function(r){return r.stage;}),datasets:[{label:'Users',data:f.map(function(r){return r.users;}),backgroundColor:[N,N2,IC,MI],borderRadius:2}]},options:{responsive:true,plugins:{legend:{display:false},title:{display:true,text:'Retention Funnel',color:N}}}});
+    var c=PD.retention.by_cohort;
+    CI['c-r-cohort']=new Chart(document.getElementById('c-r-cohort'),{type:'line',data:{labels:c.map(function(r){return'W'+r.cohort_week;}),datasets:[{label:'D1%',data:c.map(function(r){return r.d1_rate;}),borderColor:N,backgroundColor:'transparent',tension:0.3,pointRadius:3},{label:'D7%',data:c.map(function(r){return r.d7_rate;}),borderColor:N2,backgroundColor:'transparent',tension:0.3,borderDash:[4,2],pointRadius:3}]},options:{responsive:true,plugins:{title:{display:true,text:'Retention by Cohort Week',color:N}},scales:{y:{title:{display:true,text:'%'}}}}});
+  }
+  if(k==='regression'){
+    dc('c-g-r2');dc('c-g-fc');
+    var d=PD.regression.summary.slice().sort(function(a,b){return b.r2-a.r2;});
+    CI['c-g-r2']=new Chart(document.getElementById('c-g-r2'),{type:'bar',data:{labels:d.map(function(r){return r.channel;}),datasets:[{label:'R2',data:d.map(function(r){return Math.max(r.r2,0);}),backgroundColor:d.map(function(r,i){return i===0?GR:N2;}),borderRadius:2}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},title:{display:true,text:'Model R2 by Channel',color:N}},scales:{x:{max:1}}}});
+    var fc=PD.regression.forecast;
+    var chs=[...new Set(fc.map(function(r){return r.channel;}))];
+    var bgs=[...new Set(fc.map(function(r){return r.weekly_budget_eur;}))];
+    var pal=[N,N2,'#5577aa','#3399cc',GR,RE];
+    CI['c-g-fc']=new Chart(document.getElementById('c-g-fc'),{type:'line',data:{labels:bgs.map(function(b){return'\u20ac'+b.toLocaleString();}),datasets:chs.map(function(ch,i){return{label:ch,data:bgs.map(function(b){var row=fc.find(function(r){return r.channel===ch&&r.weekly_budget_eur===b;});return row?row.predicted_installs:null;}),borderColor:pal[i%pal.length],backgroundColor:'transparent',tension:0.3,pointRadius:4};})},options:{responsive:true,plugins:{title:{display:true,text:'Budget vs Predicted Installs',color:N}},scales:{x:{title:{display:true,text:'Weekly Budget'}},y:{title:{display:true,text:'Predicted Installs'}}}}});
+  }
+}
+
+var fo=new IntersectionObserver(function(entries){entries.forEach(function(entry,i){if(entry.isIntersecting){setTimeout(function(){entry.target.classList.add('visible');},i*80);fo.unobserve(entry.target);}});},{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(function(el){fo.observe(el);});
 </script>
 </body>
 </html>
+
